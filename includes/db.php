@@ -8,5 +8,4 @@ $conn = new mysqli('localhost', 'root', '', 'skincare_db');
 
 
 
-
 ?>

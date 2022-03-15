@@ -16,14 +16,6 @@ document.querySelector('#cart-btn').onclick = () =>{
     navbar.classList.remove('active');
 }
 
-let loginForm = document.querySelector('.login-form');
-
-document.querySelector('#login-btn').onclick = () =>{
-    loginForm.classList.toggle('active');
-    searchForm.classList.remove('active');
-    cart.classList.remove('active');
-    navbar.classList.remove('active');
-}
 
 let navbar = document.querySelector('.navbar');
 
@@ -59,6 +51,21 @@ function prev(){
 }
 
 
+
+function login(){
+	const email2=document.getElementById('email2').value;
+	const psw=document.getElementById('pass2').value;
+	
+	if(email2==''){
+		alert("Please enter email!");
+	}
+	else if(psw==''){
+		alert("Please enter password");
+	}
+	else{
+		alert("Welcome to our webpage!");
+		}
+	}
 
 /*login validation
 const form = document.getElementById('form');

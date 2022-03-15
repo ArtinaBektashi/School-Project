@@ -33,6 +33,30 @@
 
     <div class="box-container">
 
+    <?php 
+
+                $db = mysqli_connect("localhost", "root", "", "skincare_db");
+                $sql = "SELECT * FROM product";
+                $result = mysqli_query($db, $sql);
+                while($row = mysqli_fetch_array($result)) {
+                    echo "<div class='box'>";
+                   echo " <div class='icons'>";
+                echo "<a href='#' class='fas fa-shopping-cart'></a>";
+                echo "<a href='#' class='fas fa-heart'></a>";
+               echo "<a href='#' class='fas fa-eye'></a>";
+           echo " </div>";
+                    echo "<div class='image'>";
+                    echo "<img src='image" . $row['Image'] . "'>";
+                    echo "</div>";
+                        echo "<div class='content'>";
+                            echo "<h3>" . $row['Text'] . "</h3>";
+                        echo "<div class='price'>". $row['product_price'] ."</div>";
+                      echo "</div>";
+                    echo "</div>";
+                        } 
+                ?>
+
+
         <div class="box">
             <div class="icons">
                 <a href="#" class="fas fa-shopping-cart"></a>

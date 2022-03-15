@@ -27,10 +27,10 @@
         <h1> Log in </h1>
         <form action="includes/login.php" method="post">
             <p> Username </p>
-            <input type="text" name="login-username" placeholder="Enter username">
+            <input type="text" name="login-username" id="email2" placeholder="Enter username">
             <p> Password </p>
-            <input type="password" name="login-password" placeholder="Enter password">
-            <input type="submit" name="login-submit" value="Sign up">
+            <input type="password" name="login-password" id="pass2" placeholder="Enter password">
+            <input type="submit" name="login-submit" value="Sign up" onClick="login()">
             <a href="login.php">Not registered yet?</a>
         </form>
 </div>

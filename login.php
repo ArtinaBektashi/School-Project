@@ -32,10 +32,10 @@
             <p> Username </p>
             <input type="text" name="username" placeholder="Enter username">
             <p> Email </p>
-            <input type="email" name="email" placeholder="Enter email">
+            <input type="email" name="email" id="email2" placeholder="Enter email">
             <p> Password </p>
-            <input type="password" name="password" placeholder="Enter password">
-            <input type="submit" name="signup-submit" value="Sign up">
+            <input type="password" name="password" id="pass2" placeholder="Enter password">
+            <input type="submit" name="signup-submit" value="Sign up" onClick="login()">
         </form>
 </div>
 </div>

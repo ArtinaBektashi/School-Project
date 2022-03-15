@@ -1,33 +1,74 @@
+<?php 
+    session_start();
+?>
+<!-- THE UPLOAD ROOM BOX -->
+<?php 
+    $msg = "";
+    // If upload button is pressed
+    if(isset($_POST['upload-product'])) {
+        $target = "image".basename($_FILES['image']['name']);
+
+        // connect to the database
+
+        $db = mysqli_connect("localhost", "root", "", "skincare_db");
+
+        // Get all the submitted data from the form
+        $image = $_FILES['image']['name'];
+        $text = $_POST['text'];
+        $product_price = $_POST['product_price'];
+        $posted_by = $_SESSION['userUid'];
+
+        if(empty($image)) {
+            header("Location: dashboard.php?empty-image");
+            die();   
+        }
+
+        $sql = "INSERT INTO product(Image, Text, product_price, posted_by) VALUES ('$image', '$text', '$product_price', '$posted_by')";
+        mysqli_query($db, $sql); // stores the dubmitted data into the database table: add_product
+
+        // This moves the uploaded image inside the folder -> Images
+        if(move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
+            $msg = "Image uploaded successfully";
+        } else {
+            $msg = "There was a problem uploading your image";
+        }
+    };
+
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="stylesheet" type="text/css" href="css/admin_dashboard.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/admin_dashboard.css">
     <title>Skincare - Admin Dashboard</title>
 </head>
 <body style="background-color: floralwhite">
     
     <section id="mainsection">
-    <h1> ADMIN DASHBOARD, WELCOME <span style="color: purple"><?php echo strtoupper($_SESSION['userUid'])?></span> </h1>
-        <div class="add-room-form">
-        <h1> ADD PRODUCTS TO PAGE </h1>
-        <a href="index.php" style="color: black"><img src="image/gallery4.jpg" width="200"></a>
+    <h1 class="title"> ADMIN DASHBOARD, WELCOME <span style="color: purple"><?php echo strtoupper($_SESSION['userUid'])?></span> </h1>
+        <div id="add-product-form">
+        <h1 class="title"> ADD PRODUCTS TO PAGE </h1>
+        <a href="home.php" style="color: black"><img src="image/gallery4.jpg" width="200"></a>
             <form method="post" action="" enctype="multipart/form-data">
                 <input type="hidden" name="size" value="1000000">
                 <div>
                     <input type="file" name="image">
                 </div>
                 <div>
-                    <textarea name="text" cols="40" rows="4" placeholder="What's the name of the product?"> </textarea>
+                    <textarea class="txtarea" name="text" cols="40" rows="4" placeholder="What's the name of the product?"> </textarea>
                 </div>
                 <div>
-                    <label> Price per night </label>
+                    <label> Price of product </label>
                     <input type="number" name="product-price" style="width: 50px" value="1">
                 </div>
                 <div>
                     <input type="submit" name="upload-product" value="Uploade Image">
                 </div>
-
             </form>
         </div>
     </section>
